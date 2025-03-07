@@ -1,6 +1,13 @@
 # Changelog
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
+
+## NEXT
+
+### Fixed
+
+- Corrected the parser for branch prefixes in the CLI
+
 ## [0.3.1] - 2025-03-07
 
 ### Added
