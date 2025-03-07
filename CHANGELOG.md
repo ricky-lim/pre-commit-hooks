@@ -1,6 +1,16 @@
 # Changelog
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
+## NEXT
+
+### Added
+
+- Improved `README.md` to include setup instructions for the development environment
+
+### Changed
+
+- Updated to Python 3.10
+
 ## [0.3.0] - 2025-03-07
 
 ### Added
