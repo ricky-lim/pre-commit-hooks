@@ -28,5 +28,5 @@ repos:
         language: python
         stages:
           - pre-push
-        # args:
-        #   - --branch-prefixes=feature,hotfix,bugfix,release
+        args:
+          - --branch-prefixes=feature,hotfix,bugfix,release
