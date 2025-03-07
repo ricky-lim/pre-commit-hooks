@@ -44,3 +44,31 @@ repos:
         # Always run, regardless of which files changed
         always_run: true
 ```
+
+## Develop
+
+To set up your development environment, follow these steps:
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/ricky-lim/pre-commit-hooks.git
+    cd pre-commit-hooks
+    ```
+
+2. **Create and activate a virtual environment**:
+    ```bash
+    uv venv --python=3.10
+    source venv/bin/activate  #
+    ```
+
+3. **Install dependencies**:
+    ```bash
+    uv sync --dev
+    ```
+
+4.  **Run tests**:
+    ```bash
+    pytest
+    ```
+
+5. **Start your development**
