@@ -9,9 +9,8 @@ Ensures that your project maintains a properly formatted `CHANGELOG.md` file wit
 Features:
 - Validates that CHANGELOG.md exists
 - Ensures it contains exactly one ## NEXT section followed by an empty line
-- Can run at commit or push time
+- Can run at pre-push or pre-commit stage
 - Configurable to run only on specific branch types (feature, bugfix, etc.)
-- Can verify CHANGELOG.md is included in the commit
 
 ## Installation
 
