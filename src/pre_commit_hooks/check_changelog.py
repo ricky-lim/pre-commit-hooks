@@ -34,23 +34,6 @@ def check_changelog_exists(filename: str) -> bool:
     return Path(filename).is_file()
 
 
-def check_changelog_in_commit() -> bool:
-    """Check if CHANGELOG.md is included in the current commit."""
-    try:
-        # Get list of staged files
-        staged_files = (
-            subprocess.check_output(
-                ["git", "diff", "--cached", "--name-only"], universal_newlines=True
-            )
-            .strip()
-            .split("\n")
-        )
-
-        return "CHANGELOG.md" in staged_files
-    except subprocess.CalledProcessError:
-        return False
-
-
 def check_next_section(filename: str) -> bool:
     """Check if the CHANGELOG.md file contains '## NEXT' followed by an empty line."""
     try:
