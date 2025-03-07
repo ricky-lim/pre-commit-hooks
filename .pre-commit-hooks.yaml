@@ -6,3 +6,4 @@
   types: [markdown]
   files: 'CHANGELOG\.md'
   pass_filenames: false
+  always_run: true

@@ -6,10 +6,10 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import List, Optional, Sequence
-import os
 
 PASS = 0
 FAIL = 1
+
 
 def get_current_branch() -> str:
     """Get the current git branch name."""
@@ -34,6 +34,23 @@ def check_changelog_exists(filename: str) -> bool:
     return Path(filename).is_file()
 
 
+def check_changelog_in_commit() -> bool:
+    """Check if CHANGELOG.md is included in the current commit."""
+    try:
+        # Get list of staged files
+        staged_files = (
+            subprocess.check_output(
+                ["git", "diff", "--cached", "--name-only"], universal_newlines=True
+            )
+            .strip()
+            .split("\n")
+        )
+
+        return "CHANGELOG.md" in staged_files
+    except subprocess.CalledProcessError:
+        return False
+
+
 def check_next_section(filename: str) -> bool:
     """Check if the CHANGELOG.md file contains '## NEXT' followed by an empty line."""
     try:
@@ -43,7 +60,7 @@ def check_next_section(filename: str) -> bool:
             # Look for '## NEXT' followed by a newline and another newline
             pattern = r"## NEXT\n\n"
             matches = re.findall(pattern, content)
-            
+
             # Check for exactly one match
             if len(matches) == 1:
                 return True
@@ -71,17 +88,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         help="Run on all branches, ignoring branch prefixes",
     )
     parser.add_argument(
-        "--stage",
-        choices=["commit", "push"],
-        default="commit",
-        help="Stage at which to run the hook (commit or push)",
-    )
-    parser.add_argument(
         "filenames",
         nargs="*",
         help="Filenames to check (ignored, as we always check the changelog file)",
     )
-
     args = parser.parse_args(argv)
 
     # Check if we should run based on branch name
@@ -90,12 +100,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         current_branch, args.branch_prefixes
     ):
         print(f"Skipping changelog check on branch '{current_branch}'")
-        return PASS
-        
-    # Only run on specified stage
-    current_stage = os.environ.get("PRE_COMMIT_HOOK_STAGE", "commit")
-    if args.stage != current_stage:
-        print(f"Skipping changelog check at '{current_stage}' stage (configured for '{args.stage}' stage)")
         return PASS
 
     # Check if changelog file exists
