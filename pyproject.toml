@@ -1,0 +1,29 @@
+[project]
+name = "pre-commit-hooks"
+version = "0.1.0"
+description = "Pre-commit hooks for Python projects"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+authors = [
+    {name = "Ricky Lim", email = "rlim.email@gmail.com"}
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pre_commit_hooks"]
+
+[project.scripts]
+check-changelog = "pre_commit_hooks.check_changelog:main"
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.1.0",
+    "pytest>=8.3.5",
+]

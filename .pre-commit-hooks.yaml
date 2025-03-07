@@ -1,0 +1,8 @@
+- id: check-changelog
+  name: Check changelog format
+  description: Ensures CHANGELOG.md exists and has a properly formatted NEXT section
+  entry: check-changelog
+  language: python
+  types: [markdown]
+  files: 'CHANGELOG\.md'
+  pass_filenames: false
