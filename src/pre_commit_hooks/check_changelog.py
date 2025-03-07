@@ -66,12 +66,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         help="Comma-separated list of branch prefixes that should trigger the check",
     )
     parser.add_argument(
-        "--branch-prefixes",
-        nargs="+",
-        default=["feature", "hotfix", "bugfix", "other", "release"],
-        help="Branch prefixes that should trigger the check",
-    )
-    parser.add_argument(
         "--all-branches",
         action="store_true",
         help="Run on all branches, ignoring branch prefixes",
