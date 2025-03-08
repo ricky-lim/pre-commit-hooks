@@ -66,11 +66,12 @@ To set up your development environment, follow these steps:
 3. **Install dependencies**:
     ```bash
     uv sync --dev
+    uv pip install -e .
     ```
 
 4.  **Run tests**:
     ```bash
-    pytest
+    uv run pytest
     ```
 
 5. **Install precommit**:
