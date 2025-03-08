@@ -1,4 +1,4 @@
-name: Version Bump
+name: Version and Coverage Bump
 
 on:
   pull_request:
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Install bump-my-version
         run: pip install bump-my-version
@@ -45,6 +45,40 @@ jobs:
           elif [[ $PR_BRANCH == release/* ]]; then
             echo "bump=major" >> $GITHUB_OUTPUT
           fi
+
+      - name: Install dependencies
+        if: steps.bump-type.outputs.bump != ''
+        run: |
+            python -m pip install --upgrade pip
+            pip install pytest pytest-cov
+            pip install -e .
+
+      - name: Run tests with coverage
+        if: steps.bump-type.outputs.bump != ''
+        run: |
+            pytest --cov=src --cov-report=xml
+
+      - name: Generate coverage badge
+        if: steps.bump-type.outputs.bump != ''
+        # Generate coverage_badge.md
+        run: python3 scripts/generate_coverage_badge.py
+
+      - name: Update README with coverage badge
+        if: steps.bump-type.outputs.bump != ''
+        run: |
+            # Read the new badge from coverage_badge.md
+            BADGE_CONTENT=$(cat coverage_badge.md)
+
+            # Replace third line with new badge for coverage
+            sed -i "3c\\${BADGE_CONTENT}" README.md
+
+            # Commit and push if there are changes
+            if git diff --quiet README.md; then
+                echo "No changes to README.md"
+            else
+                git add README.md
+                git commit -m "docs: Update coverage badge [skip ci]"
+            fi
 
       - name: Bump version and update CHANGELOG.md
         id: bump-version
