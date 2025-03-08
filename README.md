@@ -1,5 +1,9 @@
 # Pre-commit Hooks
 
+## NEXT_COVERAGE
+![Test](https://github.com/ricky-lim/pre-commit-hooks/actions/workflows/test.yml/badge.svg)
+[![Changelog](https://img.shields.io/badge/changelog-Common%20Changelog-blue.svg)](CHANGELOG.md)
+
 ## Available Hooks
 
 ### check-changelog
@@ -19,7 +23,7 @@ Add the following to your `.pre-commit-config.yaml`
 ```yaml
 repos:
 -   repo: https://github.com/ricky-lim/pre-commit-hooks
-    rev: v0.1.0  # Use the specific version you want
+    rev: v0.4.0  # Use the specific version you want
     hooks:
     -   id: check-changelog
 ```
@@ -29,7 +33,7 @@ For advanced configuration
 ```yaml
 repos:
 -   repo: https://github.com/ricky-lim/pre-commit-hooks
-    rev: v0.1.0
+    rev: v0.4.0
     hooks:
     -   id: check-changelog
         args:
@@ -37,8 +41,6 @@ repos:
           - --filename=CHANGES.md
           # Only run on these branch types
           - --branch-prefixes=feature hotfix bugfix release
-          # Run at push stage
-          - --stage=pre-push
         # Only run at push time
         stages: [pre-push]
         # Always run, regardless of which files changed
@@ -71,4 +73,20 @@ To set up your development environment, follow these steps:
     pytest
     ```
 
-5. **Start your development**
+5. **Install precommit**:
+   ```bash
+   pre-commit install
+   ```
+
+6. **Development workflow**:
+    ```bash
+    # Get latest updates
+    git pull origin --tags
+
+    # Run tests before committing
+    pytest
+
+    # Make changes and commit
+    git add .
+    git commit -m "Your descriptive commit message"
+    ```
