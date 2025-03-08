@@ -20,7 +20,7 @@ packages = ["src/pre_commit_hooks"]
 check-changelog = "pre_commit_hooks.check_changelog:main"
 
 [tool.pytest.ini_options]
-addopts = "--cov=src.pre_commit_hooks --cov-report=term-missing --cov-report=xml"
+addopts = "--cov=src --cov-report=term-missing --cov-report=xml"
 testpaths = ["test"]
 
 [tool.coverage.run]
