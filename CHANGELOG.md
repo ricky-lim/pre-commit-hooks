@@ -1,6 +1,12 @@
 # Changelog
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
+## NEXT
+
+### Added
+
+- Added documentation for supported hook types (pre-commit and pre-push) in README.md
+
 ## [0.5.0] - 2025-03-08
 
 ### Added
