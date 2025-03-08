@@ -1,6 +1,12 @@
 # Changelog
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
+## NEXT
+
+### Changed
+
+- Renamed workflow file from `version_bump.yml` to `version_coverage_bump.yml` for clarity
+
 ## [0.4.0] - 2025-03-08
 
 ### Added
