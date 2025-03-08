@@ -21,6 +21,7 @@ Features:
 Add the following to your `.pre-commit-config.yaml`
 
 ```yaml
+default_install_hook_types: [pre-commit, pre-push]
 repos:
 -   repo: https://github.com/ricky-lim/pre-commit-hooks
     rev: v0.4.0  # Use the specific version you want
@@ -31,9 +32,10 @@ repos:
 For advanced configuration
 
 ```yaml
+default_install_hook_types: [pre-commit, pre-push]
 repos:
 -   repo: https://github.com/ricky-lim/pre-commit-hooks
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
     -   id: check-changelog
         args:
