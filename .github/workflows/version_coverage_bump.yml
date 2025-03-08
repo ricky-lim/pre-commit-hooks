@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  bump-version:
+  version-coverage-bump:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
