@@ -1,18 +1,14 @@
 name: Tests
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: [ '*']
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.PRE_COMMIT_HOOKS_WORKFLOW_TOKEN }}
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -25,31 +21,6 @@ jobs:
         pip install pytest pytest-cov
         pip install -e .
 
-    - name: Run tests with coverage
+    - name: Run tests
       run: |
-        pytest --cov=src --cov-report=term-missing --cov-report=xml
-
-    - name: Generate coverage badge
-      if: github.ref == 'refs/heads/main'
-      # Generate coverage_badge.md
-      run: python3 scripts/generate_coverage_badge.py
-
-    - name: Update README with coverage badge
-      if: github.ref == 'refs/heads/main'
-      run: |
-        # Read the new badge from coverage_badge.md
-        BADGE_CONTENT=$(cat coverage_badge.md)
-
-        # Replace third line with new badge for coverage
-        sed -i "3c\\${BADGE_CONTENT}" README.md
-
-        # Commit and push if there are changes
-        if git diff --quiet README.md; then
-          echo "No changes to README.md"
-        else
-          git config user.name "ricky-lim"
-          git config user.email "rlim.email@gmail.com"
-          git add README.md
-          git commit -m "docs: Update coverage badge [skip ci]"
-          git push origin main
-        fi
+        pytest --cov=src --cov-report=term-missing
