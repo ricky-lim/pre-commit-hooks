@@ -1,6 +1,12 @@
 # Changelog
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
+## NEXT
+
+### Fixed
+
+- Fixed pytest configuration in `pyproject.toml` by adding correct test directory path and adjusting test discovery patterns
+
 ## [0.4.1] - 2025-03-08
 
 ### Changed
