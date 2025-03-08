@@ -1,6 +1,6 @@
 # Pre-commit Hooks
 
-## NEXT_COVERAGE
+![Coverage](https://img.shields.io/badge/coverage-100.00%25-brightgreen)
 ![Test](https://github.com/ricky-lim/pre-commit-hooks/actions/workflows/test.yml/badge.svg)
 [![Changelog](https://img.shields.io/badge/changelog-Common%20Changelog-blue.svg)](CHANGELOG.md)
 
